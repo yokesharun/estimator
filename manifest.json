@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+
+	"name": "Estimator",
+	"description": "Blog Reading Time Estimator",
+	"version": "1.0",
+
+	"permissions": ["tabs","activeTab","<all_urls>"],
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_title": "Reading Time Estimator",
+		"default_popup": "popup.html"
+	}
+}
