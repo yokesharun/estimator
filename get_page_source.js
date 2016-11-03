@@ -22,18 +22,37 @@ function DOMtoString(document_root) {
         }
         node = node.nextSibling;
     }
-var words = html.replace(/<.*?>/g, '');
+    
+    var words = html.replace(/<.*?>/g, '');
 
     var wordcount = words.match(/\S+/g).length;
 
-    // var message = document.querySelector('#message');
-    // message.innerHTML = 'asadads'+ wordcount;
-    console.log(wordcount);
     return wordcount;
-    //return html;
+}
+
+function overalltimer(timer){
+    var words_count = DOMtoString(document);
+    words_count = Math.round(words_count/timer);
+    return toHHMMSS(words_count);
+}
+
+function toHHMMSS (word) {
+        var m = word % 60;
+        var h = (word-m)/60;
+        var tm = '';
+        if(h == 0){ 
+            tm = (m<10?"0":"") + m.toString()+" mins";
+        }else{
+            tm = h.toString() + "hrs " + (m<10?"0":"") + m.toString()+" mins";
+        }
+        return tm;
 }
 
 chrome.runtime.sendMessage({
     action: "getSource",
-    source: DOMtoString(document)
+    source: DOMtoString(document),
+    time_150: overalltimer(150),
+    time_200: overalltimer(200),
+    time_300: overalltimer(300),
+    time_500: overalltimer(500)
 });
